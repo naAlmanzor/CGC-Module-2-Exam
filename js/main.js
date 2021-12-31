@@ -242,7 +242,7 @@ lamp.position.x = -43;
 lamp.position.z = 30;
 scene.add(lamp);
 
-// ---------------- bed ---------------- //
+// ---------------- Bed ---------------- //
 function createBed(){
 	const bed = new THREE.Group();
 
@@ -306,7 +306,6 @@ function createGlass(){
 	);
 
 	glass.position.z = -0.6;
-
 	return glass;
 };
 
@@ -381,7 +380,7 @@ function createStairs(){
 		new THREE.MeshLambertMaterial({ color: 0x414D6C})
 	);
 	step1.position.x= -26;
-	step1.position.y= -6.6;
+	step1.position.y= -6.40;
 	step1.position.z= -43;
 	stairs.add(step1);
 
@@ -427,11 +426,180 @@ function createStairs(){
 const stairs = createStairs();
 scene.add(stairs);
 
-// ---------------- Table ---------------- //
+// ---------------- TV Area ---------------- //
 
-// Table
+function createCouchSides(){
+	const couchSide = new THREE.Mesh(
+		new THREE.BoxBufferGeometry(5, 6, 6),
+		new THREE.MeshLambertMaterial({ color: 0x8C8C8C})
+	);
 
-// Bowl
+	return couchSide;
+}
 
+function createCouch() {
+	const couch = new THREE.Group();
+
+	const couchBack = new THREE.Mesh(
+		new THREE.BoxBufferGeometry(25, 10, 4),
+		new THREE.MeshLambertMaterial({ color: 0x8C8C8C})
+	);
+	couch.add(couchBack);
+
+	const couchLeft = createCouchSides();
+	couchLeft.position.x=-9.9;
+	couchLeft.position.y=-2;
+	couchLeft.position.z=5;
+	couch.add(couchLeft);
+
+	const couchBottom = new THREE.Mesh(
+		new THREE.BoxBufferGeometry(15, 2, 6),
+		new THREE.MeshLambertMaterial({ color: 0x8C8C8C})
+	);
+	couchBottom.position.x=0;
+	couchBottom.position.y=-4;
+	couchBottom.position.z=5;
+	couch.add(couchBottom);
+
+	const couchPillow = new THREE.Mesh(
+		new THREE.BoxBufferGeometry(15, 2.5, 6),
+		new THREE.MeshLambertMaterial({ color: 0xfC83243})
+	);
+	couchPillow.position.x=0;
+	couchPillow.position.y=-1.8;
+	couchPillow.position.z=5;
+	couch.add(couchPillow);
+	
+
+	const couchRight = createCouchSides();
+	couchRight.position.x=10;
+	couchRight.position.y=-2;
+	couchRight.position.z=5;
+	couch.add(couchRight);
+
+	return couch;
+}
+
+function createSpeaker(){
+	const speaker = new THREE.Mesh(
+		new THREE.BoxBufferGeometry(8, 12, 6),
+		new THREE.MeshLambertMaterial({color:0x4A4A4A})
+	);
+	return speaker;
+}
+
+function createTableCorners(){
+	const tableSide = new THREE.Mesh(
+		new THREE.BoxBufferGeometry(0.5, 3, 0.5),
+		new THREE.MeshLambertMaterial({color:0xffffff})
+	);		
+	return tableSide;
+}
+
+function createGlassTable(){
+	const glassTable = new THREE.Group();
+
+	const glass = new THREE.Mesh(
+		new THREE.BoxBufferGeometry(12, 1, 8),
+		new THREE.MeshLambertMaterial({color:0xffffff, opacity: 0.5, transparent: true})
+	);	
+	glassTable.add(glass);
+	glass.position.x = 29;
+	glass.position.y = -3;
+	glass.position.z = 28;
+	
+	const tableSideLeftBottom = createTableCorners();
+	glassTable.add(tableSideLeftBottom);
+	tableSideLeftBottom.position.x = 23.6;
+	tableSideLeftBottom.position.y = -4;
+	tableSideLeftBottom.position.z = 32;
+
+	const tableSideLeftTop = createTableCorners();
+	glassTable.add(tableSideLeftTop);
+	tableSideLeftTop.position.x = 23.6;
+	tableSideLeftTop.position.y = -4;
+	tableSideLeftTop.position.z = 24.5;
+
+	const tableSideRightBottom = createTableCorners();
+	glassTable.add(tableSideRightBottom);
+	tableSideRightBottom.position.x = 34;
+	tableSideRightBottom.position.y = -4;
+	tableSideRightBottom.position.z = 32;
+	
+	const tableSideRightTop = createTableCorners();
+	glassTable.add(tableSideRightTop);
+	tableSideRightTop.position.x = 35;
+	tableSideRightTop.position.y = -4;
+	tableSideRightTop.position.z = 24.5;
+		
+
+	return glassTable;
+}
+
+
+function createTvArea(){
+	const tvArea = new THREE.Mesh();
+
+	const rag = new THREE.Mesh(
+		new THREE.BoxBufferGeometry(25, 1, 20),
+		new THREE.MeshLambertMaterial({ color: 0x95323D})
+	);
+	rag.position.x= 30;
+	rag.position.y= -6.6;
+	rag.position.z= 27;
+	tvArea.add(rag);
+
+	const couch = createCouch();
+	couch.position.x = 31;
+	couch.position.z = 9;
+	tvArea.add(couch);
+	
+	const speaker1 = createSpeaker();
+	speaker1.position.x = 15;
+	speaker1.position.y = -1;
+	speaker1.position.z = 46.6;
+	tvArea.add(speaker1);
+
+	const table = new THREE.Mesh(
+		new THREE.BoxBufferGeometry(20, 5, 6),
+		new THREE.MeshLambertMaterial({color:0xffffff})
+	);	
+	tvArea.add(table);
+	table.position.x = 29;
+	table.position.y = -4
+	table.position.z = 46.6;
+
+	const tv = new THREE.Mesh(
+		new THREE.BoxBufferGeometry(10, 5, 0.6),
+		new THREE.MeshLambertMaterial({color:0x4A4A4A})
+	);	
+	tvArea.add(tv);
+	tv.position.x = 29;
+	tv.position.y = 1;
+	tv.position.z = 48;
+
+	const tvBack = new THREE.Mesh(
+		new THREE.BoxBufferGeometry(2, 5, 0.6),
+		new THREE.MeshLambertMaterial({color:0x4A4A4A})
+	);	
+	tvArea.add(tvBack);
+	tvBack.position.x = 29;
+	tvBack.position.y = 1;
+	tvBack.position.z = 49;
+
+	const speaker2 = createSpeaker();
+	speaker2.position.x = 43;
+	speaker2.position.y = -1;
+	speaker2.position.z = 46.6;
+	tvArea.add(speaker2);
+	
+	const glassTable = createGlassTable(); 
+	tvArea.add(glassTable);
+
+	return tvArea; 
+}
+
+const tvArea = createTvArea();
+scene.add(tvArea);
 
 renderer.render(scene, camera);

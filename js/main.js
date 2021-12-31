@@ -39,7 +39,7 @@ document.body.appendChild( renderer.domElement );
 
 
 function createWall(){
-	const geometry = new THREE.BoxGeometry(100, 20, 4); 
+	const geometry = new THREE.BoxGeometry(100, 20.30, 4); 
 	const material = new THREE.MeshLambertMaterial({color: 0x8080});
 	const wall = new THREE.Mesh( geometry, material );
 	return wall;
@@ -55,8 +55,8 @@ scene.add(rightWall);
 
 const leftWall = createWall();
 leftWall.rotation.y = 17.28;
-leftWall.position.x = -50;
-leftWall.position.y = 3.3;
+leftWall.position.x = -47.9;
+leftWall.position.y = 3.6;
 scene.add(leftWall);
 
 // Floor
@@ -69,8 +69,9 @@ floor.rotation.x = 11;
 floor.position.y= -6.5;
 scene.add( floor ); 
 
-// ---------------- Furnitures and Appliances ---------------- //
+// ---------------- Work Place ---------------- //
 
+// Chair
 function createChair(){
 
 	const chair = new THREE.Group();
@@ -101,8 +102,7 @@ function createChair(){
 	return chair;
 }
 
-// ---------------- Room ---------------- //
-
+// workSpace
 function createWorkSpace() {
 	const workSpace = new THREE.Group();
   
@@ -132,27 +132,169 @@ const workSpace = createWorkSpace();
 workSpace.scale.x = 0.5;
 workSpace.scale.y = 0.5;
 
-workSpace.position.x = 20;
-workSpace.position.z = -40;
+workSpace.rotation.y = -17.29;
+workSpace.position.x = -40;
+workSpace.position.y = -2;
+workSpace.position.z = 15;
 scene.add(workSpace);
   
-renderer.render(scene, camera);
-
 // ---------------- Cabinets ---------------- //
 
-// Left Cabinet
+function createCabinetHandle() {
+	const geometry = new THREE.BoxBufferGeometry(1, 1, 0.5);
+	const material = new THREE.MeshLambertMaterial({color:0xffffff});
+	const cabinetHandle = new THREE.Mesh(geometry, material);
+	cabinetHandle.position.z = 4;
+	return cabinetHandle;
+}
 
-// Right Cabinet
+function createCabinet() {
+	const cabinet = new THREE.Group;
 
-// ---------------- Bed Sid ---------------- //
+	const cabinetBody = new THREE.Mesh(
+		new THREE.BoxBufferGeometry(15, 20, 6),
+		new THREE.MeshLambertMaterial({color:0x293042})
+	);
+	cabinet.add(cabinetBody);
 
-// Lanp Stand
+	const divider = new THREE.Mesh(
+		new THREE.BoxBufferGeometry(0.4, 20, 0),
+		new THREE.MeshLambertMaterial({color:0x1A1E2A})
+	);
+	divider.position.x = -0;
+	divider.position.z = 3.1;
+	cabinet.add(divider);
 
-// Lamp Cover
+	const leftHandle = createCabinetHandle();
+	leftHandle.position.x = 2;
+	cabinet.add(leftHandle);
 
-// Bed
+	const rightHandle = createCabinetHandle();
+	rightHandle.position.x = -2;
+	cabinet.add(rightHandle);
 
-// Bed Sheet
+	return cabinet;
+};
+
+const rightCabinet = createCabinet();
+rightCabinet.position.x = 40;
+rightCabinet.position.y = 2;
+rightCabinet.position.z = -45;
+
+const leftCabinet = createCabinet();
+// leftCabinet.rotation.y = -17.29;
+leftCabinet.position.x = 20;
+leftCabinet.position.y = 2;
+leftCabinet.position.z = -45;
+
+scene.add(rightCabinet);
+scene.add(leftCabinet);
+
+
+// ---------------- Lamp ---------------- //
+
+function createLampStand (){
+	const lampStand = new THREE.Group();
+
+	const lampStandCylinder = new THREE.Mesh(
+		new THREE.CylinderGeometry( 1, 2, 2, 30 ),
+		new THREE.MeshBasicMaterial( {color: 0x1A1E2A} )
+	);
+
+	lampStandCylinder.position.y = -6;
+	lampStand.add(lampStandCylinder)
+
+	const lampStick = new THREE.Mesh(
+		new THREE.BoxBufferGeometry(0.2, 6),
+		new THREE.MeshLambertMaterial({color:0x1A1E2A})
+	);
+
+	lampStick.position.y = -2;
+	lampStand.add(lampStick)
+
+	return lampStand;
+}
+
+function createLampCover(){
+	const geometry = new THREE.CylinderGeometry( 1.5, 2, 4, 30 );
+	const material = new THREE.MeshToonMaterial( {color: 0xF8E972} );
+	const lampCover = new THREE.Mesh( geometry, material );
+
+
+	lampCover.position.y = 4;
+	return lampCover;
+};
+
+function createLamp(){
+	const lamp = new THREE.Group();
+
+	const lampStand = createLampStand();
+	lamp.add(lampStand);
+
+	const lampCover = createLampCover();
+	lamp.add(lampCover);
+
+	return lamp;
+}
+
+const lamp = createLamp();
+lamp.position.x = -43;
+lamp.position.z = 30;
+scene.add(lamp);
+
+// ---------------- bed ---------------- //
+function createBed(){
+	const bed = new THREE.Group();
+
+	const headBoard = new THREE.Mesh(
+		new THREE.BoxBufferGeometry(12, 12),
+		new THREE.MeshLambertMaterial({ color: 0x664033 })
+	);
+	bed.add(headBoard);
+	headBoard.position.z = -10;
+
+	const bedFrame = new THREE.Mesh(
+		new THREE.BoxBufferGeometry(12, 1, 21),
+		new THREE.MeshLambertMaterial({ color: 0x664033 })
+	);
+	bedFrame.position.y = -3.6;
+	bedFrame.position.z = 0;
+	bed.add(bedFrame);
+
+	const matress = new THREE.Mesh(
+		new THREE.BoxBufferGeometry(12, 4, 5),
+		new THREE.MeshLambertMaterial({ color: 0xffffff })
+	);
+	bed.add(matress);
+	matress.position.y = -1;
+	matress.position.z = -7;
+
+	const blanket = new THREE.Mesh(
+		new THREE.BoxBufferGeometry(12, 4, 15),
+		new THREE.MeshLambertMaterial({ color: 0xfC83243 })
+	);
+	bed.add(blanket);
+	blanket.position.y = -1;
+	blanket.position.z = 3;
+
+	const footBoard = new THREE.Mesh(
+		new THREE.BoxBufferGeometry(12, 10),
+		new THREE.MeshLambertMaterial({ color: 0x664033 })
+	);
+	bed.add(footBoard);
+	footBoard.position.y = -1;
+	footBoard.position.z = 11;
+	
+	return bed
+}
+
+const bed = createBed();
+bed.scale.x = 1.2;
+bed.rotation.y = -17.29;
+bed.position.x = -35;
+bed.position.y = -1;
+bed.position.z = 40;
+scene.add(bed);
 
 
 // ---------------- Window ---------------- //
@@ -169,17 +311,5 @@ renderer.render(scene, camera);
 
 // Bowl
 
-//  ---------------- Lights ---------------- //
 
-// Lightbulb
-
-
-
-
-
-camera.position.z = 10;
-
-// function animate() {
-// 	requestAnimationFrame( animate );
-// }
-// animate();
+renderer.render(scene, camera);

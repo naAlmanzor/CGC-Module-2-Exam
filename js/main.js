@@ -299,11 +299,74 @@ scene.add(bed);
 
 // ---------------- Window ---------------- //
 
+function createGlass(){
+	const glass = new THREE.Mesh(
+		new THREE.BoxBufferGeometry(15, 20),
+		new THREE.MeshLambertMaterial({ color: 0xffffff })
+	);
+
+	glass.position.z = -0.6;
+
+	return glass;
+};
+
+function createWindowFrame(){
+
+}
+
+
+function createWindow(){
+	const window = new THREE.Group();
+
+	const curtainRight = new THREE.Mesh(
+		new THREE.BoxBufferGeometry(4, 20),
+		new THREE.MeshLambertMaterial({ color: 0xA94C67 })
+	);
+	window.add(curtainRight);
+	curtainRight.position.x =5.5;
+	curtainRight.position.z =-0.5;
+
+	const curtainLeft = new THREE.Mesh(
+		new THREE.BoxBufferGeometry(2, 20),
+		new THREE.MeshLambertMaterial({ color: 0xA94C67 })
+	);
+	window.add(curtainLeft);
+	curtainLeft.position.x = -6.5;
+	curtainLeft.position.z = -0.5;
+
+	const frameTop = new THREE.Mesh(
+		new THREE.BoxBufferGeometry(15, 0.8),
+		new THREE.MeshLambertMaterial({color:0x293042})
+	);
+	window.add(frameTop);
+	frameTop.position.y = 10;
+	frameTop.position.z = -0.5;
+
+	const frameDivider = new THREE.Mesh(
+		new THREE.BoxBufferGeometry(0.5, 20),
+		new THREE.MeshLambertMaterial({color:0x293042})
+	);
+	window.add(frameDivider);
+	frameDivider.position.x = -0.5;
+	frameDivider.position.z = -0.5;
+
+	const glass = createGlass();
+	window.add(glass);
+
+	return window;
+};
+
+const fullWindow = createWindow();
+fullWindow.rotation.y = -17.29;
+fullWindow.position.x = -45.6;
+fullWindow.position.z = -10;
+scene.add(fullWindow);
+
+
+
 // Curtain 1
 
 // Curtain 2
-
-// Window
 
 // ---------------- Table ---------------- //
 

@@ -40,7 +40,7 @@ document.body.appendChild( renderer.domElement );
 
 function createWall(){
 	const geometry = new THREE.BoxGeometry(100, 20.30, 4); 
-	const material = new THREE.MeshLambertMaterial({color: 0x8080});
+	const material = new THREE.MeshLambertMaterial({color: 0x987952});
 	const wall = new THREE.Mesh( geometry, material );
 	return wall;
 }
@@ -62,7 +62,7 @@ scene.add(leftWall);
 // Floor
 
 const planegeometry = new THREE.PlaneGeometry( 100, 100, 1, 1 );
-const planematerial = new THREE.MeshLambertMaterial( { color: 0x8080 } );
+const planematerial = new THREE.MeshLambertMaterial( { color: 0xDEBF8C } );
 const floor = new THREE.Mesh( planegeometry, planematerial );
 floor.material.side = THREE.DoubleSide;
 floor.rotation.x = 11;
@@ -403,11 +403,6 @@ function createGlass(){
 	return glass;
 };
 
-function createWindowFrame(){
-
-}
-
-
 function createWindow(){
 	const window = new THREE.Group();
 
@@ -429,7 +424,7 @@ function createWindow(){
 
 	const frameTop = new THREE.Mesh(
 		new THREE.BoxBufferGeometry(15, 0.8),
-		new THREE.MeshLambertMaterial({color:0x293042})
+		new THREE.MeshLambertMaterial({color:0x000000})
 	);
 	window.add(frameTop);
 	frameTop.position.y = 10;
@@ -437,7 +432,7 @@ function createWindow(){
 
 	const frameDivider = new THREE.Mesh(
 		new THREE.BoxBufferGeometry(0.5, 20),
-		new THREE.MeshLambertMaterial({color:0x293042})
+		new THREE.MeshLambertMaterial({color:0x000000})
 	);
 	window.add(frameDivider);
 	frameDivider.position.x = -0.5;
@@ -498,7 +493,7 @@ function createStairs(){
 
 	const border = new THREE.Mesh(
 		new THREE.BoxBufferGeometry(25, 4, 2),
-		new THREE.MeshLambertMaterial({color:0x293042})
+		new THREE.MeshLambertMaterial({color:0x664033})
 	);
 	border.position.x = -36.3;
 	border.position.y = -5;
@@ -616,7 +611,7 @@ function createGlassTable(){
 
 	const tableSideRightBottom = createTableCorners();
 	glassTable.add(tableSideRightBottom);
-	tableSideRightBottom.position.x = 34;
+	tableSideRightBottom.position.x = 35;
 	tableSideRightBottom.position.y = -4;
 	tableSideRightBottom.position.z = 32;
 	

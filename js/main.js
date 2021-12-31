@@ -362,11 +362,70 @@ fullWindow.position.x = -45.6;
 fullWindow.position.z = -10;
 scene.add(fullWindow);
 
+// ---------------- Stairs ---------------- //
 
+function createStairs(){
 
-// Curtain 1
+	const stairs = new THREE.Group();
+	const stairsBase = new THREE.Mesh(
+		new THREE.BoxBufferGeometry(20, 1, 10),
+		new THREE.MeshLambertMaterial({ color: 0x000000} )
+	);
+	stairsBase.position.x= -36;
+	stairsBase.position.y= -6.6;
+	stairsBase.position.z= -43;
+	stairs.add(stairsBase);
 
-// Curtain 2
+	const step1 = new THREE.Mesh(
+		new THREE.BoxBufferGeometry(4, 1, 10.5),
+		new THREE.MeshLambertMaterial({ color: 0x414D6C})
+	);
+	step1.position.x= -26;
+	step1.position.y= -6.6;
+	step1.position.z= -43;
+	stairs.add(step1);
+
+	const step2 = new THREE.Mesh(
+		new THREE.BoxBufferGeometry(4, 1, 8),
+		new THREE.MeshLambertMaterial({ color: 0x363E54})
+	);
+	step2.position.x= -30;
+	step2.position.y= -6.5;
+	step2.position.z= -41.7;
+	stairs.add(step2);
+
+	const step3 = new THREE.Mesh(
+		new THREE.BoxBufferGeometry(4, 1, 6),
+		new THREE.MeshLambertMaterial({ color: 0x232C43})
+	);
+	step3.position.x= -34;
+	step3.position.y= -6.5;
+	step3.position.z= -40.7;
+	stairs.add(step3);
+
+	const border = new THREE.Mesh(
+		new THREE.BoxBufferGeometry(25, 4, 2),
+		new THREE.MeshLambertMaterial({color:0x293042})
+	);
+	border.position.x = -36.3;
+	border.position.y = -5;
+	border.position.z = -38;
+	stairs.add(border);
+
+	const rag = new THREE.Mesh(
+		new THREE.BoxBufferGeometry(6, 1, 12),
+		new THREE.MeshLambertMaterial({ color: 0x95323D})
+	);
+	rag.position.x= -20.1;
+	rag.position.y= -6.6;
+	rag.position.z= -42;
+	stairs.add(rag);
+
+	return stairs; 
+}
+
+const stairs = createStairs();
+scene.add(stairs);
 
 // ---------------- Table ---------------- //
 

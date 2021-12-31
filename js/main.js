@@ -602,4 +602,92 @@ function createTvArea(){
 const tvArea = createTvArea();
 scene.add(tvArea);
 
+// ---------------- Miscellaneous ---------------- //
+
+
+// Plants
+function createPlant(){
+	const plant = new THREE.Group();
+
+	const pot = new THREE.Mesh(
+		new THREE.CylinderGeometry(2, 1.5, 1.95, 30),
+		new THREE.MeshToonMaterial({color: 0x664033})
+	);
+	plant.add(pot);
+
+	const bush = new THREE.Mesh(
+		new THREE.SphereGeometry( 2, 32, 16 ),
+		new THREE.MeshBasicMaterial( { color: 0x518C4F	 } )
+	);
+
+	bush.position.y = 2 
+	plant.add(bush);
+
+	return plant;
+}
+// Plants near window
+const plant1 = createPlant();
+plant1.position.x = -38;
+plant1.position.z = -12;
+scene.add(plant1);
+
+const plant2 = createPlant();
+plant2.position.x = -38;
+plant2.position.z = 3;
+scene.add(plant2);
+
+// Plant near Stairs
+const plant3 = createPlant();
+plant3.position.x = -20;
+plant3.position.z = -30;
+scene.add(plant3);
+
+function createDesk(){
+	const desk = new THREE.Group();
+	const frame = new THREE.Mesh(
+		new THREE.BoxBufferGeometry(7, 3, 10),
+		new THREE.MeshLambertMaterial({ color: 0x664033 })
+	);
+	desk.add(frame);
+
+	const knob = new THREE.Mesh(new THREE.BoxBufferGeometry(0.5, 0.5, 2),
+	new THREE.MeshLambertMaterial({ color: 0xffffff })
+	);
+	desk.add(knob);
+	knob.position.x = 3.4;
+	
+	return desk;
+}
+// Desk near stairs
+
+const desk = createDesk();
+desk.position.x = -42;
+desk.position.y = -4.5;
+desk.position.z = -30;
+scene.add(desk);
+
+function createDiary(){
+	const diary = new THREE.Group;
+	const cover = new THREE.Mesh(
+		new THREE.BoxBufferGeometry(2, 0.5, 3),
+		new THREE.MeshLambertMaterial({ color: 0xfC83243 })
+	);
+	diary.add(cover);
+	
+	const detail = new THREE.Mesh(
+		new THREE.BoxBufferGeometry(1, 0.8, 0.3),
+		new THREE.MeshLambertMaterial({ color: 0xffffff })
+	);
+	diary.add(detail);
+	detail.position.z = -0.5;
+
+	return diary;
+}
+
+const diary = createDiary();
+diary.position.x = -40;
+diary.position.z = -28;
+diary.rotation.y = 1;
+scene.add(diary);
+
 renderer.render(scene, camera);

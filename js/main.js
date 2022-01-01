@@ -24,19 +24,14 @@ const directionalLight = new THREE.DirectionalLight(0xffffff, 0.8);
 directionalLight.position.set(200, 500, 300);
 scene.add(directionalLight); 
 
-
-// scene.background = new THREE.Color(0xffffff);
 renderer.setSize( window.innerWidth, window.innerHeight );
-// renderer.render( scene, camera );
 
 document.body.appendChild( renderer.domElement );
 
-// ---------------- Insert Code Here ---------------- //     
+// -------------------------------------------------------- Insert Code Here -------------------------------------------------------- //     
 
 
 // ---------------- Room Foundation ---------------- //
-
-
 function createWall(){
 
 	const wall = new THREE.Mesh( 
@@ -703,7 +698,6 @@ const tvArea = createTvArea();
 scene.add(tvArea);
 
 // ---------------- Miscellaneous ---------------- //
-
 
 // Plants
 function createPlant(){

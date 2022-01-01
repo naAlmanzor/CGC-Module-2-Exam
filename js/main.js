@@ -34,7 +34,6 @@ document.body.appendChild( renderer.domElement );
 // ---------------- Insert Code Here ---------------- //     
 
 
-
 // ---------------- Room Foundation ---------------- //
 
 
@@ -584,7 +583,7 @@ function createCouch() {
 	couch.add(cushion);
 
 	const couchRight = createCouchSides();
-	couchRight.position.set(10, 2, 5);
+	couchRight.position.set(10, -2, 5);
 	couch.add(couchRight);
 
 	return couch;
@@ -685,6 +684,10 @@ function createTvArea(){
 	const glassTable = createGlassTable(); 
 	tvArea.add(glassTable);
 
+	const light = new THREE.PointLight( 0xff0000, 1, 100 );
+	light.position.set( 30, 60, 30 );
+	tvArea.add( light );
+
 	return tvArea; 
 }
 
@@ -727,6 +730,11 @@ scene.add(plant2);
 const plant3 = createPlant();
 plant3.position.set(-20, 0,  -30);
 scene.add(plant3);
+
+// Plant in TV Area
+const plant4 = createPlant();
+plant4.position.set(2, 0,  52);
+scene.add(plant4);
 
 function createDesk(){
 

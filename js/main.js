@@ -376,6 +376,9 @@ function createLamp(){
 	const lampCover = createLampCover();
 	lamp.add(lampCover);
 
+	const light = new THREE.PointLight( 0xff0000, 1, 100 );
+	lamp.add(light);
+
 	return lamp;
 }
 
@@ -436,13 +439,18 @@ scene.add(bed);
 // ---------------- Window ---------------- //
 
 function createGlass(){
-
+	const glassWindow = new THREE.Group();
+	
 	const glass = new THREE.Mesh(
 		new THREE.BoxBufferGeometry(15, 20),
 		new THREE.MeshLambertMaterial({ color: 0xffffff, opacity: 0.5, transparent: true })
 	);
-
 	glass.position.z = -0.6;
+	glassWindow.add(glass);
+
+	const light = new THREE.PointLight( 0xff0000, 1, 10 );
+	glass.add(light);
+
 	return glass;
 };
 

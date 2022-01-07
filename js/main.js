@@ -784,4 +784,6 @@ diary.position.set(-40, 0, -28);
 diary.rotation.y = 1;
 scene.add(diary);
 
+
+//Render Scene
 renderer.render(scene, camera);
